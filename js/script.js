@@ -25,6 +25,7 @@ function insert() {
     set(length, 'email', f.email.value);
     set(length, 'gender', f.gender.value);
     set(length, 'comment', f.comment.value);
+    set(length, 'time', new Date().toLocaleFormat('%D - %T'));
     setLength(length + 1);
     display();
     return true;
@@ -36,12 +37,28 @@ function display() {
   var length = getLength();
   for (var i=0; i<length; i++) {
     var node = model.cloneNode(true);
-    node.getElementsByClassName('cm-name')[0].innerHTML = get(i, 'name');
-    node.getElementsByClassName('cm-gender')[0].innerHTML = get(i, 'gender');
-    node.getElementsByClassName('cm-email')[0].innerHTML = get(i, 'email');
-    node.getElementsByClassName('cm-comment')[0].innerHTML = get(i, 'comment');
+    var tag;
+    node.id = 'comment' + i;
+    tag = node.getElementsByClassName('cm-name')[0];
+    if (tag) tag.innerHTML = get(i, 'name');
+    var tag = node.getElementsByClassName('cm-gender')[0],
+        value = get(i, 'gender');
+    if (tag) {
+      if (tag.tagName == 'I') {
+        if (value == 'Maschio') tag.classList.add('fa', 'fa-male');
+        else tag.classList.add('fa', 'fa-female');
+      }
+      else tag.innerHTML = value;
+    }
+    tag = node.getElementsByClassName('cm-email')[0];
+    if (tag) tag.innerHTML = get(i, 'email');
+    tag = node.getElementsByClassName('cm-time')[0];
+    if (tag) tag.innerHTML = get(i, 'time');
+    tag = node.getElementsByClassName('cm-comment')[0];
+    if (tag) tag.innerHTML = get(i, 'comment');
     if (i == length-1) {
-      node.getElementsByClassName('cm-separator')[0].remove();
+      var tag = node.getElementsByClassName('cm-separator')[0];
+      if (tag) tag.remove();
     }
     div.appendChild(node);
   }
