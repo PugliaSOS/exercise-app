@@ -1,3 +1,10 @@
+function getValidity() {
+  return (
+    document.form1.name.validity.valid &&
+    document.form1.email.validity.valid &&
+    document.form1.comment.validity.valid
+  );
+}
 function getLength() {
   return parseInt(localStorage.getItem('myAppNumComments')) || 0;
 }
@@ -11,14 +18,17 @@ function get(index, key) {
   return localStorage.getItem('myApp.' + index + '.' + key);
 }
 function insert() {
-  var f = document.form1;
-  var length = getLength();
-  set(length, 'name', f.name.value);
-  set(length, 'email', f.email.value);
-  set(length, 'gender', f.gender.value);
-  set(length, 'comment', f.comment.value);
-  setLength(length + 1);
-  display();
+  if (getValidity()) {
+    var f = document.form1;
+    var length = getLength();
+    set(length, 'name', f.name.value);
+    set(length, 'email', f.email.value);
+    set(length, 'gender', f.gender.value);
+    set(length, 'comment', f.comment.value);
+    setLength(length + 1);
+    display();
+    return true;
+  } else return false;
 }
 function display() {
   var div = document.getElementById('results');
@@ -32,5 +42,9 @@ function display() {
       '</div>'
     if (i != length-1) div.innerHTML += '<hr>';
   }
+}
+function empty() {
+  setLength(0);
+  display();
 }
 display();

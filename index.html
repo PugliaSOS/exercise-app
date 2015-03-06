@@ -1,19 +1,21 @@
 <html>
 <head>
 <title>Esercizio</title>
+<script src=script.js async></script>
 </head>
 <body>
 <div>
-  <form method=get name=form1>
-    Nome <input type=text name=name><br>
-    Email <input type=email name=email></br>
+  <form method=post name=form1 onsubmit="return insert()">
+    Nome <input type=text name=name required><br>
+    Email <input type=email name=email required></br>
     Sesso <select name=gender>
       <option>Maschio</option>
       <option>Femmina<option>
     </select><br>
     Inserisci un commento<br>
-    <textarea name=comment></textarea>
-    <button type=button onclick=insert()>Inserisci</button>
+    <textarea name=comment required></textarea><br>
+    <button type=button onclick=empty()>Cancella</button><br>
+    <button>Inserisci</button>
   </form>
 </div>
 <div id=results></div>
