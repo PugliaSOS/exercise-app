@@ -35,16 +35,20 @@ function display() {
   div.innerHTML = '';
   var length = getLength();
   for (var i=0; i<length; i++) {
-    div.innerHTML += '<div class=comment><h1>' + get(i, 'name') + '</h1>' +
-      '<h3>' + get(i, 'gender') + '</h3>' +
-      '<h3>' + get(i, 'email') + '</h3>' +
-      '<p>' + get(i, 'comment') + '</p>' +
-      '</div>'
-    if (i != length-1) div.innerHTML += '<hr>';
+    var node = model.cloneNode(true);
+    node.getElementsByClassName('cm-name')[0].innerHTML = get(i, 'name');
+    node.getElementsByClassName('cm-gender')[0].innerHTML = get(i, 'gender');
+    node.getElementsByClassName('cm-email')[0].innerHTML = get(i, 'email');
+    node.getElementsByClassName('cm-comment')[0].innerHTML = get(i, 'comment');
+    if (i == length-1) {
+      node.getElementsByClassName('cm-separator')[0].remove();
+    }
+    div.appendChild(node);
   }
 }
 function empty() {
   setLength(0);
   display();
 }
+var model = document.getElementById('comment-model');
 display();
