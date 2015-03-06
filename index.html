@@ -1,10 +1,21 @@
-<form method=get name=form1>
-  Nome <input type=text name=name><br>
-  Email <input type=email name=email></br>
-  Sesso <select name=gender><option>Maschio</option><option>Femmina<option></select><br>
-  Inserisci un commento<br>
-  <textarea name=comment></textarea>
-  <button onclick=insert()>Inserisci</button>
-</form>
-<div id=results>
+<html>
+<head>
+<title>Esercizio</title>
+</head>
+<body>
+<div>
+  <form method=get name=form1>
+    Nome <input type=text name=name><br>
+    Email <input type=email name=email></br>
+    Sesso <select name=gender>
+      <option>Maschio</option>
+      <option>Femmina<option>
+    </select><br>
+    Inserisci un commento<br>
+    <textarea name=comment></textarea>
+    <button type=button onclick=insert()>Inserisci</button>
+  </form>
 </div>
+<div id=results></div>
+</body>
+</html>
