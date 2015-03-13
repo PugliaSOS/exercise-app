@@ -17,6 +17,11 @@ function set(index, key, value) {
 function get(index, key) {
   return localStorage.getItem('myApp.' + index + '.' + key);
 }
+function dateFormat(date) {
+  return date.toISOString()
+    .replace(/T/, ' ')
+    .replace(/\..+/, '')
+}
 function insert() {
   if (getValidity()) {
     var f = document.form1;
@@ -25,7 +30,7 @@ function insert() {
     set(length, 'email', f.email.value);
     set(length, 'gender', f.gender.value);
     set(length, 'comment', f.comment.value);
-    set(length, 'time', new Date().toLocaleFormat('%D - %T'));
+    set(length, 'time', dateFormat(new Date()));
     setLength(length + 1);
     display();
     return true;
