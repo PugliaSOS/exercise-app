@@ -1,6 +1,6 @@
 {
     "name": "Esercizio Html5 CodingLab",
-    "main": "index.html",
+    "main": "www/index.html",
     "window": {
         "toolbar": false,
         "width": 800,
