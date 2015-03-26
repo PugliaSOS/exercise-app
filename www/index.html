@@ -1,57 +1,77 @@
-<html>
+<html ng-app=starter>
 <head>
-<title>Esercizio</title>
-<script src=js/script.js async></script>
-<link rel=stylesheet href=css/bootstrap.min.css>
-<link rel=stylesheet href=css/fontawesome.min.css>
-<link rel=stylesheet href=css/my-style.css>
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title>Esercizio</title>
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <script src="cordova.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/services.js"></script>
 </head>
-<body>
-<div class=container>
-  <div class=row>
-    <div class="col-md-4 col-md-offset-2">
-      <div class="panel panel-primary comment-form">
-        <div class=panel-heading>
-          Inserisci un commento
+<body ng-controller=MainCtrl>
+<ion-side-menus>
+
+  <ion-side-menu-content>
+    <!-- Barra del menu -->
+    <div class="bar bar-header bar-balanced">
+      <button class="button" ng-click=openMenu()><i class="ion-navicon-round"></i></button>
+      <h1 class="title">Esercizio</h1>
+      <button class="button"><i class="ion-trash-a"></i></button>
+    </div>
+
+    <!-- Conenuto app -->
+    <div class="content has-header padding">
+      <div class="list card">
+        <div class="item item-text-wrap">
+          <p>Nessun commento inserito!!!</p>
         </div>
-        <div class=panel-body>
-          <form method=post name=form1 onsubmit="return insert()">
-            <input type=text name=name required class=form-control
-              placeholder=Nome>
-            <input type=email name=email required class=form-control
-              placeholder=Email>
-            <select name=gender class=form-control required>
-              <option value="" selected="selected">-- Sesso --</option>
-              <option>Maschio</option>
-              <option>Femmina</option>
-            </select>
-            <textarea name=comment required class=form-control
-              placeholder="Inserisci un commento..."></textarea>
-            <button type=button onclick=empty() class="btn btn-danger">
-              Cancella
-            </button>
-            <button class="btn btn-primary">Inserisci</button>
-          </form>
+        <div class="item item-avatar" href="#">
+          <img src="img/male.png" alt="male">
+          <h2>Nome utente</h2>
+          <p>nome.utente@email.com</p>
+          <p>09/11/2012</p>
+        </div>
+        <div class="item item-body">
+          <p>Questo è il commento</p>
         </div>
       </div>
     </div>
-    <div id=results class="col-md-4">
-      <div id=comment-model>
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <i class=cm-gender></i> <span class=cm-name></span>
-          </div>
-          <div class="panel-body">
-            <p><i class="fa fa-envelope"></i> <span class=cm-email></span></p>
-            <p><i class="fa fa-clock-o"></i> <span class=cm-time></span></p>
-            <p>
-              <i class="fa fa-comment fa-flip-horizontal"></i>
-              <span class=cm-comment></span>
-            </p>
-          </div>
+  </ion-side-menu-content>
+
+  <!-- Menu App -->
+  <ion-side-menu side=left>
+    <div class="bar bar-header bar-balanced">
+      <h1 class="title">Nuovo commento</h1>
+    </div>
+    <div class="content has-header">
+      <div class="list">
+        <label class="item item-input">
+          <input type="text" placeholder=Nome>
+        </label>
+        <label class="item item-input">
+          <input type="email" placeholder=Email>
+        </label>
+        <label class="item item-radio">
+          <input type="radio" name=gender>
+          <div class="item-content">Maschio</div>
+          <i class="radio-icon ion-checkmark"></i>
+        </label>
+        <label class="item item-radio">
+          <input type="radio" name=gender>
+          <div class="item-content">Femmina</div>
+          <i class="radio-icon ion-checkmark"></i>
+        </label>
+        <label class="item item-input">
+          <textarea placeholder="Inserisci qui il tuo commento"></textarea>
+        </label>
       </div>
     </div>
-  </div>
-</div>
+  </ion-side-menu>
+
+</ion-side-menus>
 </body>
 </html>
