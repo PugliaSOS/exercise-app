@@ -18,25 +18,31 @@
   <ion-side-menu-content>
     <!-- Barra del menu -->
     <div class="bar bar-header bar-balanced">
-      <button class="button"><i class="ion-navicon-round"></i></button>
+      <button class="button" ng-click=openMenu()>
+        <i class="ion-navicon-round"></i>
+      </button>
       <h1 class="title">Esercizio</h1>
-      <button class="button"><i class="ion-trash-a"></i></button>
+      <button class="button" ng-click=clear()>
+        <i class="ion-trash-a"></i>
+      </button>
     </div>
 
     <!-- Conenuto app -->
     <ion-content class="has-header padding">
       <div class="list card">
-        <div class="item item-text-wrap">
+        <div class="item item-text-wrap" ng-hide=comments.length>
           <p>Nessun commento inserito!!!</p>
         </div>
-        <div class="item item-avatar" href="#">
-          <img src="img/male.png" alt="male">
-          <h2>Nome utente</h2>
-          <p>nome.utente@email.com</p>
-          <p>09/11/2012</p>
+        <div class="item item-avatar" href="#" ng-show=comments.length
+          ng-repeat-start="c in comments track by $index">
+          <img src="img/male.png" alt="male" ng-if=c.sesso>
+          <img src="img/female.png" alt="female" ng-if=!c.sesso>
+          <h2>{{c.nome}}</h2>
+          <p>{{c.email}}</p>
+          <p>{{c.data|date:format:"dd-MM-yyyy - HH:mm"}}</p>
         </div>
-        <div class="item item-body">
-          <p>Questo è il commento</p>
+        <div class="item item-body" ng-show=comments.length ng-repeat-end>
+          <p>{{c.testo}}</p>
         </div>
       </div>
     </ion-content>
@@ -45,29 +51,32 @@
   <!-- Menu App -->
   <ion-side-menu side=left>
     <div class="bar bar-header bar-balanced">
-        <button class=button><i class="ion-android-send"></i></button>
+        <button class=button ng-click=add(comment)>
+           <i class="ion-android-send"></i>
+         </button>
       <h1 class="title">Nuovo commento</h1>
     </div>
     <div class="content has-header">
       <div class="list">
         <label class="item item-input">
-          <input type="text" placeholder=Nome>
+          <input type="text" placeholder=Nome ng-model=comment.nome>
         </label>
         <label class="item item-input">
-          <input type="email" placeholder=Email>
+          <input type="email" placeholder=Email ng-model=comment.email>
         </label>
         <label class="item item-radio">
-          <input type="radio" name=gender>
+          <input type="radio" name=gender value=1 ng-model=comment.sesso>
           <div class="item-content">Maschio</div>
           <i class="radio-icon ion-checkmark"></i>
         </label>
         <label class="item item-radio">
-          <input type="radio" name=gender>
+          <input type="radio" name=gender value=0 ng-model=comment.sesso>
           <div class="item-content">Femmina</div>
           <i class="radio-icon ion-checkmark"></i>
         </label>
         <label class="item item-input">
-          <textarea placeholder="Inserisci qui il tuo commento">
+          <textarea placeholder="Inserisci qui il tuo commento"
+            ng-model=comment.testo>
           </textarea>
         </label>
       </div>
