@@ -18,7 +18,7 @@ angular.module('starter.controllers', [])
 
     $scope.add = function(comment) {
         comment.data = new Date();
-        $scope.comments.push(comment);
+        $scope.comments.push(angular.extend({}, comment));
         save();
         $ionicSideMenuDelegate.toggleLeft();
         for (var i in comment) delete comment[i];
