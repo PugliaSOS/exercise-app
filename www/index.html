@@ -18,13 +18,13 @@
   <ion-side-menu-content>
     <!-- Barra del menu -->
     <div class="bar bar-header bar-balanced">
-      <button class="button" ng-click=openMenu()><i class="ion-navicon-round"></i></button>
+      <button class="button"><i class="ion-navicon-round"></i></button>
       <h1 class="title">Esercizio</h1>
       <button class="button"><i class="ion-trash-a"></i></button>
     </div>
 
     <!-- Conenuto app -->
-    <div class="content has-header padding">
+    <ion-content class="has-header padding">
       <div class="list card">
         <div class="item item-text-wrap">
           <p>Nessun commento inserito!!!</p>
@@ -39,12 +39,13 @@
           <p>Questo è il commento</p>
         </div>
       </div>
-    </div>
+    </ion-content>
   </ion-side-menu-content>
 
   <!-- Menu App -->
   <ion-side-menu side=left>
     <div class="bar bar-header bar-balanced">
+        <button class=button><i class="ion-android-send"></i></button>
       <h1 class="title">Nuovo commento</h1>
     </div>
     <div class="content has-header">
@@ -66,7 +67,8 @@
           <i class="radio-icon ion-checkmark"></i>
         </label>
         <label class="item item-input">
-          <textarea placeholder="Inserisci qui il tuo commento"></textarea>
+          <textarea placeholder="Inserisci qui il tuo commento">
+          </textarea>
         </label>
       </div>
     </div>

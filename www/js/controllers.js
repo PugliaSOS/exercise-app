@@ -2,35 +2,35 @@ angular.module('starter.controllers', [])
 
 .controller('MainCtrl', function($scope, $ionicSideMenuDelegate) {
 
-    $scope.openMenu = function() {
-        $ionicSideMenuDelegate.toggleLeft();
-    };
-
-    $scope.load = function() {
+    var load = function() {
         $scope.comments = angular.fromJson(
             window.localStorage.getItem('myApp') || []
         );
     };
 
-    $scope.save = function() {
+    var save = function() {
         window.localStorage.setItem('myApp', angular.toJson(
             $scope.comments || []
         ));
     };
 
+    load();
+
     $scope.add = function(comment) {
         comment.data = new Date();
         $scope.comments.push(comment);
-        $scope.save();
+        save();
         $ionicSideMenuDelegate.toggleLeft();
         for (var i in comment) delete comment[i];
     };
 
     $scope.clear = function() {
         window.localStorage.removeItem('myApp');
-        $scope.load();
+        load();
     };
 
-    $scope.load();
+    $scope.openMenu = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+    };
 });
 
